@@ -119,7 +119,13 @@ async function fetchProfile() {
         nameEl.textContent = user.name;
       }
     }
-    if (user.bio && bioEl) bioEl.textContent = user.bio;
+    if (user.bio && bioEl) {
+      // Avoid duplicating the tagline if the GitHub bio matches it
+      const tagline = document.querySelector(".hero-tagline");
+      if (!tagline || user.bio.trim().toLowerCase() !== tagline.textContent.trim().toLowerCase()) {
+        bioEl.textContent = user.bio;
+      }
+    }
     if (user.avatar_url && avatarEl) avatarEl.src = user.avatar_url;
 
     // Animate counters
