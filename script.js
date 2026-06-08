@@ -16,7 +16,7 @@ const LANG_COLORS = {
   Vue: "#41b883",
   SCSS: "#c6538c",
 };
-
+//
 // ===== Cursor glow (ambient light follows mouse) =====
 function initCursorGlow() {
   const glow = document.getElementById("cursor-glow");
