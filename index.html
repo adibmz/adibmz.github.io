@@ -4,21 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adib Mezouar — Full-Stack Web Developer</title>
-  <meta name="description" content="Portfolio of Adib Mezouar — Full-Stack Web Developer building clean, scalable web products." />
+  <meta name="description" content="Portfolio of Adib Mezouar — Full-Stack Web Developer crafting clean, scalable web products with modern tools." />
+  <meta name="keywords" content="Adib Mezouar, Full-Stack Developer, Web Developer, React, Laravel, Portfolio" />
+  <meta property="og:title" content="Adib Mezouar — Full-Stack Web Developer" />
+  <meta property="og:description" content="Building clean, scalable web products with modern tools." />
+  <meta property="og:image" content="https://github.com/adibmz.png" />
+  <meta property="og:type" content="website" />
   <link rel="icon" href="https://github.com/adibmz.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
+  <!-- Ambient cursor glow -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <header class="header" id="header">
     <nav class="nav container">
-      <a href="#" class="nav-logo">adibmz</a>
-      <ul class="nav-links">
+      <a href="#" class="nav-logo" id="nav-logo">adibmz</a>
+      <ul class="nav-links" id="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
+        <li><a href="#skills">Stack</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </nav>
   </header>
 
@@ -26,24 +40,38 @@
     <!-- Hero -->
     <section class="hero" id="hero">
       <div class="container hero-content">
-        <img id="avatar" class="hero-avatar" src="https://github.com/adibmz.png" alt="Adib Mezouar" width="150" height="150" />
-        <h1 class="hero-name" id="name">Adib Mezouar</h1>
-        <p class="hero-tagline">Full-Stack Web Developer</p>
-        <p class="hero-bio" id="bio">Building clean, scalable web products</p>
-        <div class="hero-stats" id="stats">
-          <div class="stat"><span class="stat-value" id="repos-count">—</span><span class="stat-label">Repos</span></div>
-          <div class="stat"><span class="stat-value" id="followers-count">—</span><span class="stat-label">Followers</span></div>
-          <div class="stat"><span class="stat-value" id="following-count">—</span><span class="stat-label">Following</span></div>
+        <div class="hero-left">
+          <img id="avatar" class="hero-avatar" src="https://github.com/adibmz.png" alt="Adib Mezouar" width="160" height="160" />
+          <div class="hero-stats" id="stats">
+            <div class="stat">
+              <span class="stat-value" id="repos-count">—</span>
+              <span class="stat-label">Repos</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="followers-count">—</span>
+              <span class="stat-label">Followers</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="following-count">—</span>
+              <span class="stat-label">Following</span>
+            </div>
+          </div>
         </div>
-        <div class="hero-actions">
-          <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-          <a href="mailto:adibmezouar4@gmail.com" class="btn btn-secondary">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            Email Me
-          </a>
+        <div class="hero-right">
+          <span class="hero-greeting">Hello, I'm</span>
+          <h1 class="hero-name" id="name">Adib <span class="accent">Mezouar</span></h1>
+          <p class="hero-tagline">Full-Stack Web Developer</p>
+          <p class="hero-bio" id="bio">I craft production-ready web applications with modern tools, clean architecture, and a passion for exceptional developer experience.</p>
+          <div class="hero-actions">
+            <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="github-btn">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="mailto:adibmezouar4@gmail.com" class="btn btn-secondary" id="email-btn">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              Email Me
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -51,10 +79,13 @@
     <!-- About -->
     <section class="section" id="about">
       <div class="container">
-        <h2 class="section-title">About Me</h2>
+        <div class="section-header reveal">
+          <span class="section-label">Who I Am</span>
+          <h2 class="section-title">About Me</h2>
+        </div>
         <div class="about-grid">
-          <div class="about-text">
-            <p>I'm <strong>Adib Mezouar</strong> — a full-stack web developer who builds production-ready, maintainable web applications.</p>
+          <div class="about-text reveal reveal-delay-1">
+            <p>I'm <strong>Adib Mezouar</strong> — a full-stack web developer who builds production-ready, maintainable web applications. I focus on turning complex problems into elegant, performant solutions.</p>
             <ul class="about-list">
               <li><strong>Clean architecture</strong> — modular, testable, and maintainable codebases</li>
               <li><strong>Performance-first</strong> — fast load times, efficient APIs, smart caching</li>
@@ -62,7 +93,7 @@
               <li><strong>Practical delivery</strong> — rapid iteration with measurable outcomes</li>
             </ul>
           </div>
-          <div class="about-card">
+          <div class="about-card reveal reveal-delay-2">
             <h3>What I Solve</h3>
             <ul>
               <li>End-to-end web applications</li>
@@ -79,9 +110,13 @@
     <!-- Skills -->
     <section class="section section-alt" id="skills">
       <div class="container">
-        <h2 class="section-title">Tech Stack</h2>
+        <div class="section-header reveal">
+          <span class="section-label">Technologies</span>
+          <h2 class="section-title">Tech Stack</h2>
+          <p class="section-subtitle">The tools I use daily to build robust, scalable applications</p>
+        </div>
         <div class="skills-grid">
-          <div class="skill-group">
+          <div class="skill-group reveal reveal-delay-1">
             <h3>Frontend</h3>
             <div class="skill-tags">
               <span class="tag">HTML</span>
@@ -94,7 +129,7 @@
               <span class="tag">Bootstrap</span>
             </div>
           </div>
-          <div class="skill-group">
+          <div class="skill-group reveal reveal-delay-2">
             <h3>Backend</h3>
             <div class="skill-tags">
               <span class="tag">Node.js</span>
@@ -103,7 +138,7 @@
               <span class="tag">Laravel</span>
             </div>
           </div>
-          <div class="skill-group">
+          <div class="skill-group reveal reveal-delay-3">
             <h3>Databases</h3>
             <div class="skill-tags">
               <span class="tag">PostgreSQL</span>
@@ -111,8 +146,8 @@
               <span class="tag">MongoDB</span>
             </div>
           </div>
-          <div class="skill-group">
-            <h3>DevOps &amp; Tools</h3>
+          <div class="skill-group reveal reveal-delay-4">
+            <h3>DevOps & Tools</h3>
             <div class="skill-tags">
               <span class="tag">Git</span>
               <span class="tag">GitHub</span>
@@ -129,7 +164,11 @@
     <!-- Projects -->
     <section class="section" id="projects">
       <div class="container">
-        <h2 class="section-title">Projects</h2>
+        <div class="section-header reveal">
+          <span class="section-label">My Work</span>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">Open-source projects and experiments from my GitHub</p>
+        </div>
         <div class="projects-grid" id="projects-grid">
           <div class="loading" id="projects-loading">Loading projects from GitHub…</div>
         </div>
@@ -139,14 +178,17 @@
     <!-- Contact -->
     <section class="section section-alt" id="contact">
       <div class="container contact-container">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="contact-text">I'm open to freelance &amp; contract projects, remote roles, and collaborations on web apps, tooling, and product engineering.</p>
-        <div class="contact-links">
-          <a href="mailto:adibmezouar4@gmail.com" class="btn btn-primary">
+        <div class="section-header reveal">
+          <span class="section-label">Let's Connect</span>
+          <h2 class="section-title">Get In Touch</h2>
+        </div>
+        <p class="contact-text reveal reveal-delay-1">I'm open to freelance &amp; contract projects, remote roles, and collaborations on web apps, tooling, and product engineering.</p>
+        <div class="contact-links reveal reveal-delay-2">
+          <a href="mailto:adibmezouar4@gmail.com" class="btn btn-primary" id="contact-email-btn">
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             adibmezouar4@gmail.com
           </a>
-          <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="contact-github-btn">
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
@@ -156,8 +198,9 @@
   </main>
 
   <footer class="footer">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Adib Mezouar. Built with GitHub API.</p>
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Adib Mezouar</p>
+      <p>Crafted with intention · Powered by <a href="https://docs.github.com/en/rest" target="_blank" rel="noopener noreferrer">GitHub API</a></p>
     </div>
   </footer>
 
