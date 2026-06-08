@@ -175,14 +175,30 @@ async function fetchRepos() {
         .map((t) => `<span class="topic-tag">${t}</span>`)
         .join("");
 
+      const homepageLink = repo.homepage && repo.homepage.trim()
+        ? `<a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="project-live-link" title="Visit live project">
+             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+               <circle cx="12" cy="12" r="10"/>
+               <line x1="2" y1="12" x2="22" y2="12"/>
+               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+             </svg>
+             Live
+           </a>`
+        : "";
+
       card.innerHTML = `
         <div class="project-card-header">
           <h3 class="project-card-title">
             <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a>
           </h3>
-          <svg class="project-card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-          </svg>
+          <div class="project-card-actions">
+            ${homepageLink}
+            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-source-link" title="View source on GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </a>
+          </div>
         </div>
         ${repo.description ? `<p class="project-card-desc">${repo.description}</p>` : ""}
         ${topics ? `<div class="project-card-topics">${topics}</div>` : ""}
