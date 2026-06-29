@@ -3,8 +3,8 @@
   --bg-card: rgba(255, 255, 255, 0.03);
   --bg-card-hover: rgba(255, 255, 255, 0.06);
   --border-glass: rgba(255, 255, 255, 0.08);
-  --accent: #6C63FF;
-  --accent-glow: rgba(108, 99, 255, 0.3);
+  --accent: #10B981;
+  --accent-glow: rgba(16, 185, 129, 0.3);
   
   --text-primary: #F8F8F8;
   --text-secondary: #A1A1AA;
@@ -83,7 +83,7 @@ ul {
   right: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
   animation-delay: -5s;
 }
 
@@ -138,7 +138,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .btn-primary:hover {
-  background-color: #5b54e5;
+  background-color: #059669;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px var(--accent-glow);
 }
@@ -317,12 +317,12 @@ h1, h2, h3, h4, h5 {
 
 .code-badge {
   font-family: var(--font-mono);
-  background: rgba(108, 99, 255, 0.1);
+  background: rgba(16, 185, 129, 0.1);
   color: var(--accent);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-size: 0.9rem;
-  border: 1px solid rgba(108, 99, 255, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .hero-desc {
@@ -612,7 +612,7 @@ h1, h2, h3, h4, h5 {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--accent);
-  background: rgba(108, 99, 255, 0.1);
+  background: rgba(16, 185, 129, 0.1);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
 }
