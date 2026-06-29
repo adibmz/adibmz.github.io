@@ -107,8 +107,6 @@ async function fetchProfile() {
     const bioEl = document.getElementById("bio");
     const avatarEl = document.getElementById("avatar");
     const reposEl = document.getElementById("repos-count");
-    const followersEl = document.getElementById("followers-count");
-    const followingEl = document.getElementById("following-count");
 
     if (user.name && nameEl) {
       // Preserve the accent span on last name
@@ -130,8 +128,6 @@ async function fetchProfile() {
 
     // Animate counters
     if (reposEl) animateCounter(reposEl, user.public_repos ?? 0);
-    if (followersEl) animateCounter(followersEl, user.followers ?? 0);
-    if (followingEl) animateCounter(followingEl, user.following ?? 0);
   } catch (err) {
     console.warn("Could not fetch GitHub profile:", err);
   }
@@ -143,9 +139,7 @@ async function fetchRepos() {
   const loading = document.getElementById("projects-loading");
 
   try {
-    const res = await fetch(
-      `${GITHUB_API}/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30`
-    );
+    const res = await fetch("repos.json");
     if (!res.ok) throw new Error("Failed to fetch repos");
     const repos = await res.json();
 
@@ -165,10 +159,6 @@ async function fetchRepos() {
       const card = document.createElement("div");
       card.className = "project-card reveal";
       card.style.transitionDelay = `${Math.min(index * 0.05, 0.3)}s`;
-
-      const langDot = repo.language
-        ? `<span><span class="lang-dot" style="background:${LANG_COLORS[repo.language] || "#71717a"}"></span> ${repo.language}</span>`
-        : "";
 
       const topics = (repo.topics || [])
         .slice(0, 5)
@@ -202,11 +192,6 @@ async function fetchRepos() {
         </div>
         ${repo.description ? `<p class="project-card-desc">${repo.description}</p>` : ""}
         ${topics ? `<div class="project-card-topics">${topics}</div>` : ""}
-        <div class="project-card-meta">
-          ${langDot}
-          <span>⭐ ${repo.stargazers_count}</span>
-          <span>🍴 ${repo.forks_count}</span>
-        </div>
       `;
 
       grid.appendChild(card);
