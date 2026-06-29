@@ -1,7 +1,6 @@
 [
   {
     "name": "Workzura",
-    "html_url": "https://workzura.live",
     "description": "A comprehensive platform featuring public user profiles, gigs, and messaging. Built with a React frontend and a Laravel backend, integrating Reverb workers, MySQL, and secure PayPal webhooks, all deployed on Oracle Cloud via Docker.",
     "topics": [
       "laravel",
