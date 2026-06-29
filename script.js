@@ -1,245 +1,107 @@
-const GITHUB_USERNAME = "adibmz";
-const GITHUB_API = "https://api.github.com";
+// ===== Mobile Nav =====
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelectorAll('.mobile-link');
 
-// Language colors (subset of GitHub linguist colors)
-const LANG_COLORS = {
-  JavaScript: "#f1e05a",
-  TypeScript: "#3178c6",
-  HTML: "#e34c26",
-  CSS: "#563d7c",
-  EJS: "#a91e50",
-  PHP: "#4F5D95",
-  Python: "#3572A5",
-  Shell: "#89e051",
-  Dockerfile: "#384d54",
-  Blade: "#f7523f",
-  Vue: "#41b883",
-  SCSS: "#c6538c",
+menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+  });
+});
+
+// ===== Navbar Scroll Effect =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// ===== Intersection Observer for Fade-in =====
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.15
 };
-//
-// ===== Cursor glow (ambient light follows mouse) =====
-function initCursorGlow() {
-  const glow = document.getElementById("cursor-glow");
-  if (!glow || window.matchMedia("(max-width: 768px)").matches) return;
 
-  let mouseX = 0, mouseY = 0;
-  let glowX = 0, glowY = 0;
-
-  document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  // Smooth follow with lerp for that premium feel
-  function animate() {
-    glowX += (mouseX - glowX) * 0.08;
-    glowY += (mouseY - glowY) * 0.08;
-    glow.style.left = glowX + "px";
-    glow.style.top = glowY + "px";
-    requestAnimationFrame(animate);
-  }
-  animate();
-}
-
-// ===== Scroll reveal animation =====
-function initScrollReveal() {
-  const reveals = document.querySelectorAll(".reveal");
-  if (!reveals.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
-  );
-
-  reveals.forEach((el) => observer.observe(el));
-}
-
-// ===== Header scroll effect =====
-function initHeaderScroll() {
-  const header = document.getElementById("header");
-  if (!header) return;
-
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        header.classList.toggle("scrolled", window.scrollY > 50);
-        ticking = false;
-      });
-      ticking = true;
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
     }
   });
-}
+}, observerOptions);
 
-// ===== Fetch GitHub profile =====
-async function fetchProfile() {
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
+
+// ===== Load Projects =====
+async function loadProjects() {
+  const grid = document.getElementById('projects-grid');
+  
   try {
-    const res = await fetch(`${GITHUB_API}/users/${GITHUB_USERNAME}`);
-    if (!res.ok) return;
-    const user = await res.json();
-
-    const nameEl = document.getElementById("name");
-    const bioEl = document.getElementById("bio");
-    const avatarEl = document.getElementById("avatar");
-
-    if (user.name && nameEl) {
-      // Preserve the accent span on last name
-      const parts = user.name.split(" ");
-      if (parts.length >= 2) {
-        nameEl.innerHTML = `${parts[0]} <span class="accent">${parts.slice(1).join(" ")}</span>`;
-      } else {
-        nameEl.textContent = user.name;
-      }
-    }
-    if (user.bio && bioEl) {
-      // Avoid duplicating the tagline if the GitHub bio matches it
-      const tagline = document.querySelector(".hero-tagline");
-      if (!tagline || user.bio.trim().toLowerCase() !== tagline.textContent.trim().toLowerCase()) {
-        bioEl.textContent = user.bio;
-      }
-    }
-    if (user.avatar_url && avatarEl) avatarEl.src = user.avatar_url;
-  } catch (err) {
-    console.warn("Could not fetch GitHub profile:", err);
-  }
-}
-
-// ===== Fetch GitHub repos =====
-async function fetchRepos() {
-  const grid = document.getElementById("projects-grid");
-  const loading = document.getElementById("projects-loading");
-
-  try {
-    const res = await fetch("repos.json");
-    if (!res.ok) throw new Error("Failed to fetch repos");
+    const res = await fetch('repos.json');
+    if (!res.ok) throw new Error('Failed to load projects');
+    
     const repos = await res.json();
-
-    // Filter out profile repo and forks, sort by stars then updated
-    const filtered = repos
-      .filter((r) => !r.fork && r.name !== GITHUB_USERNAME && r.name !== `${GITHUB_USERNAME}.github.io`)
-      .sort((a, b) => b.stargazers_count - a.stargazers_count || new Date(b.updated_at) - new Date(a.updated_at));
-
-    if (loading) loading.remove();
-
-    if (filtered.length === 0) {
-      grid.innerHTML = '<p class="loading">No public projects found.</p>';
+    
+    if (repos.length === 0) {
+      grid.innerHTML = '<p style="color: var(--text-secondary);">No projects found.</p>';
       return;
     }
-
-    filtered.forEach((repo, index) => {
-      const card = document.createElement("div");
-      card.className = "project-card reveal";
-      card.style.transitionDelay = `${Math.min(index * 0.05, 0.3)}s`;
-
-      const topics = (repo.topics || [])
-        .slice(0, 5)
-        .map((t) => `<span class="topic-tag">${t}</span>`)
-        .join("");
-
-      const homepageLink = repo.homepage && repo.homepage.trim()
-        ? `<a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="project-live-link" title="Visit live project">
-             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-               <circle cx="12" cy="12" r="10"/>
-               <line x1="2" y1="12" x2="22" y2="12"/>
-               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-             </svg>
-             Live
-           </a>`
-        : "";
+    
+    repos.forEach((repo, index) => {
+      const card = document.createElement('div');
+      card.className = 'project-card reveal';
+      card.style.transitionDelay = `${Math.min(index * 0.1, 0.4)}s`;
+      
+      const topics = (repo.topics || []).slice(0, 5).map(t => `<span>${t}</span>`).join('');
+      
+      const linkIcon = repo.homepage ? `<a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" title="Live Site">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>` : '';
 
       card.innerHTML = `
-        <div class="project-card-header">
-          <h3 class="project-card-title">
+        <div class="project-header">
+          <h3 class="project-title">
             <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a>
           </h3>
-          <div class="project-card-actions">
-            ${homepageLink}
-            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="project-source-link" title="View source on GitHub">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-              </svg>
+          <div class="project-links">
+            ${linkIcon}
+            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
             </a>
           </div>
         </div>
-        ${repo.description ? `<p class="project-card-desc">${repo.description}</p>` : ""}
-        ${topics ? `<div class="project-card-topics">${topics}</div>` : ""}
+        <p class="project-desc">${repo.description || ''}</p>
+        <div class="project-topics">
+          ${topics}
+        </div>
       `;
-
+      
       grid.appendChild(card);
+      observer.observe(card); // Observe new dynamic elements
     });
-
-    // Re-observe new project cards
-    initScrollReveal();
+    
   } catch (err) {
-    console.warn("Could not fetch GitHub repos:", err);
-    if (loading) loading.textContent = "Unable to load projects. Please visit my GitHub profile directly.";
+    console.error('Error loading projects:', err);
+    grid.innerHTML = '<p style="color: var(--text-secondary);">Unable to load projects at this time.</p>';
   }
 }
 
-// ===== Mobile nav toggle =====
-function initNav() {
-  const toggle = document.getElementById("nav-toggle");
-  const links = document.getElementById("nav-links");
-
-  if (toggle && links) {
-    toggle.addEventListener("click", () => {
-      links.classList.toggle("active");
-    });
-
-    // Close menu when a link is clicked
-    links.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        links.classList.remove("active");
-      });
-    });
-  }
-}
-
-// ===== Active nav link tracking =====
-function initActiveNav() {
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-links a");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach((link) => {
-            link.style.color = link.getAttribute("href") === `#${id}`
-              ? "var(--color-text)"
-              : "";
-          });
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-}
-
-// ===== Set year =====
-function setYear() {
-  const yearEl = document.getElementById("year");
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  loadProjects();
+  
+  // Set current year dynamically in footer
+  const yearEl = document.getElementById('current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-}
-
-// ===== Init =====
-document.addEventListener("DOMContentLoaded", () => {
-  setYear();
-  initNav();
-  initHeaderScroll();
-  initCursorGlow();
-  initScrollReveal();
-  initActiveNav();
-  fetchProfile();
-  fetchRepos();
 });

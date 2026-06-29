@@ -1,182 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adib Mezouar — Full-Stack Web Developer</title>
-  <meta name="description" content="Portfolio of Adib Mezouar — Full-Stack Web Developer crafting clean, scalable web products with modern tools." />
-  <meta name="keywords" content="Adib Mezouar, Full-Stack Developer, Web Developer, React, Laravel, Portfolio" />
-  <meta property="og:title" content="Adib Mezouar — Full-Stack Web Developer" />
-  <meta property="og:description" content="Building clean, scalable web products with modern tools." />
-  <meta property="og:image" content="https://github.com/adibmz.png" />
-  <meta property="og:type" content="website" />
-  <link rel="icon" href="https://github.com/adibmz.png" type="image/png" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adib Mezouar - Full-Stack Web Developer</title>
+  <meta name="description" content="I craft production-ready web applications with modern tools, clean architecture, and a passion for exceptional developer experience.">
+  <!-- Fonts: Inter and Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon and Social Preview -->
+  <link rel="icon" type="image/png" href="assets/pfp.png">
+  <meta property="og:image" content="assets/pfp.png">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Ambient cursor glow -->
-  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+  <!-- Ambient Orbs -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
 
-  <header class="header" id="header">
-    <nav class="nav container">
-      <a href="#" class="nav-logo" id="nav-logo">adibmz</a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Stack</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">adibmz</a>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#stack" class="nav-link">Stack</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <a href="mailto:adibmezouar4@gmail.com" class="btn btn-primary nav-cta">Hire Me</a>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
-    </nav>
-  </header>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#stack" class="mobile-link">Stack</a>
+      <a href="#projects" class="mobile-link">Projects</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+      <a href="mailto:adibmezouar4@gmail.com" class="btn btn-primary">Hire Me</a>
+    </div>
+  </nav>
 
   <main>
-    <!-- Hero -->
     <section class="hero" id="hero">
-      <div class="container hero-content">
-        <div class="hero-left">
-          <img id="avatar" class="hero-avatar" src="https://github.com/adibmz.png" alt="Adib Mezouar" width="160" height="160" />
+      <div class="container hero-container">
+        <div class="hero-image-wrapper reveal fade-up">
+          <img src="assets/pfp.png" alt="Adib Mezouar" class="hero-avatar">
+          <div class="avatar-glow"></div>
         </div>
-        <div class="hero-right">
-          <span class="hero-greeting">Hello, I'm</span>
-          <h1 class="hero-name" id="name">Adib <span class="accent">Mezouar</span></h1>
-          <p class="hero-tagline">Full-Stack Web Developer</p>
-          <p class="hero-bio" id="bio">I craft production-ready web applications with modern tools, clean architecture, and a passion for exceptional developer experience.</p>
-          <div class="hero-actions">
-            <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="github-btn">
-              <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              GitHub
-            </a>
-            <a href="mailto:adibmezouar4@gmail.com" class="btn btn-secondary" id="email-btn">
-              <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              Email Me
-            </a>
-          </div>
+        <h1 class="hero-title reveal fade-up delay-1">Hello, I'm <strong>Adib Mezouar</strong></h1>
+        <div class="hero-subtitle reveal fade-up delay-2">
+          <span class="code-badge">&lt; Full-Stack Web Developer /&gt;</span>
+        </div>
+        <p class="hero-desc reveal fade-up delay-3">
+          I craft production-ready web applications with modern tools, clean architecture, and a passion for exceptional developer experience.
+        </p>
+        <div class="hero-actions reveal fade-up delay-4">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="mailto:adibmezouar4@gmail.com" class="btn btn-secondary">Email Me</a>
         </div>
       </div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about">
+    <section class="about" id="about">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="section-label">Who I Am</span>
-          <h2 class="section-title">About Me</h2>
+        <div class="section-heading reveal fade-up">
+          <span class="section-tag">// about_me</span>
+          <h2>Who I Am</h2>
         </div>
         <div class="about-grid">
-          <div class="about-text reveal reveal-delay-1">
-            <p>I'm <strong>Adib Mezouar</strong> — a full-stack web developer who builds production-ready, maintainable web applications. I focus on turning complex problems into elegant, performant solutions.</p>
-            <ul class="about-list">
-              <li><strong>Clean architecture</strong> — modular, testable, and maintainable codebases</li>
-              <li><strong>Performance-first</strong> — fast load times, efficient APIs, smart caching</li>
-              <li><strong>Developer experience</strong> — automation, reusable tooling and DX improvements</li>
-              <li><strong>Practical delivery</strong> — rapid iteration with measurable outcomes</li>
-            </ul>
+          <div class="about-text reveal fade-up">
+            <p>I specialize in building end-to-end web applications that are robust, scalable, and maintainable. By bridging the gap between elegant frontend interfaces and secure backend logic, I deliver products that work flawlessly.</p>
+            <div class="pillars-grid">
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <span>Clean Architecture</span>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <span>Performance-First</span>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <span>Developer Experience</span>
+              </div>
+              <div class="pillar-card">
+                <div class="pillar-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </div>
+                <span>Practical Delivery</span>
+              </div>
+            </div>
           </div>
-          <div class="about-card reveal reveal-delay-2">
-            <h3>What I Solve</h3>
-            <ul>
-              <li>End-to-end web applications</li>
-              <li>REST APIs, auth &amp; integrations</li>
-              <li>System design &amp; scalability</li>
-              <li>Performance optimization</li>
-              <li>CI/CD &amp; Docker deployment</li>
-            </ul>
+          <div class="about-stats reveal fade-up delay-2">
+            <div class="stat-card">
+              <h3>5+</h3>
+              <p>Projects</p>
+            </div>
+            <div class="stat-card">
+              <h3>3+</h3>
+              <p>Years Experience</p>
+            </div>
+            <div class="stat-card">
+              <h3>15+</h3>
+              <p>Technologies</p>
+            </div>
+            <div class="stat-card">
+              <h3>Open</h3>
+              <p>To Work</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="what-i-solve reveal fade-up">
+          <h3 class="subsection-title">What I Solve</h3>
+          <div class="solve-grid">
+            <div class="glass-card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <h4>End-to-end Web Apps</h4>
+              <p>Full lifecycle from design to deployment.</p>
+            </div>
+            <div class="glass-card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </div>
+              <h4>REST APIs & Auth</h4>
+              <p>Secure integrations and scalable services.</p>
+            </div>
+            <div class="glass-card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+              </div>
+              <h4>System Design</h4>
+              <p>Architecting for scale and high availability.</p>
+            </div>
+            <div class="glass-card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              </div>
+              <h4>Performance Optimization</h4>
+              <p>Faster load times and efficient queries.</p>
+            </div>
+            <div class="glass-card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              </div>
+              <h4>CI/CD & Docker</h4>
+              <p>Automated deployments and containerization.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="section section-alt" id="skills">
+    <section class="stack" id="stack">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="section-label">Technologies</span>
-          <h2 class="section-title">Tech Stack</h2>
-          <p class="section-subtitle">The tools I use daily to build robust, scalable applications</p>
+        <div class="section-heading reveal fade-up">
+          <span class="section-tag">// tech_stack</span>
+          <h2>Technologies</h2>
         </div>
-        <div class="skills-grid">
-          <div class="skill-group reveal reveal-delay-1">
+        <div class="stack-groups">
+          <div class="stack-group reveal fade-up">
             <h3>Frontend</h3>
-            <div class="skill-tags">
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">React</span>
-              <span class="tag">Redux</span>
-              <span class="tag">Tailwind CSS</span>
-              <span class="tag">Bootstrap</span>
+            <div class="tech-pills">
+              <span class="tech-pill">HTML</span>
+              <span class="tech-pill">CSS</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">TypeScript</span>
+              <span class="tech-pill">React</span>
+              <span class="tech-pill">Redux</span>
+              <span class="tech-pill">Tailwind CSS</span>
+              <span class="tech-pill">Bootstrap</span>
             </div>
           </div>
-          <div class="skill-group reveal reveal-delay-2">
+          <div class="stack-group reveal fade-up delay-1">
             <h3>Backend</h3>
-            <div class="skill-tags">
-              <span class="tag">Node.js</span>
-              <span class="tag">Express</span>
-              <span class="tag">PHP</span>
-              <span class="tag">Laravel</span>
+            <div class="tech-pills">
+              <span class="tech-pill">Node.js</span>
+              <span class="tech-pill">Express</span>
+              <span class="tech-pill">PHP</span>
+              <span class="tech-pill">Laravel</span>
             </div>
           </div>
-          <div class="skill-group reveal reveal-delay-3">
+          <div class="stack-group reveal fade-up delay-2">
             <h3>Databases</h3>
-            <div class="skill-tags">
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">MySQL</span>
-              <span class="tag">MongoDB</span>
+            <div class="tech-pills">
+              <span class="tech-pill">PostgreSQL</span>
+              <span class="tech-pill">MySQL</span>
+              <span class="tech-pill">MongoDB</span>
             </div>
           </div>
-          <div class="skill-group reveal reveal-delay-4">
-            <h3>DevOps & Tools</h3>
-            <div class="skill-tags">
-              <span class="tag">Git</span>
-              <span class="tag">GitHub</span>
-              <span class="tag">Docker</span>
-              <span class="tag">Linux</span>
-              <span class="tag">VS Code</span>
-              <span class="tag">Postman</span>
+          <div class="stack-group reveal fade-up delay-3">
+            <h3>DevOps</h3>
+            <div class="tech-pills">
+              <span class="tech-pill">Git</span>
+              <span class="tech-pill">GitHub</span>
+              <span class="tech-pill">Docker</span>
+              <span class="tech-pill">Linux</span>
+              <span class="tech-pill">VS Code</span>
+              <span class="tech-pill">Postman</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section class="section" id="projects">
+    <section class="projects" id="projects">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="section-label">My Work</span>
-          <h2 class="section-title">Projects</h2>
-          <p class="section-subtitle">Open-source projects and experiments from my GitHub</p>
+        <div class="section-heading reveal fade-up">
+          <span class="section-tag">// open_source</span>
+          <h2>My Work</h2>
         </div>
-        <div class="projects-grid" id="projects-grid">
-          <div class="loading" id="projects-loading">Loading projects from GitHub…</div>
+        <div class="projects-masonry" id="projects-grid">
+          <!-- Projects loaded via JS -->
+        </div>
+        <div class="projects-footer reveal fade-up">
+          <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            View All on GitHub
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="section section-alt" id="contact">
-      <div class="container contact-container">
-        <div class="section-header reveal">
-          <span class="section-label">Let's Connect</span>
-          <h2 class="section-title">Get In Touch</h2>
-        </div>
-        <p class="contact-text reveal reveal-delay-1">I'm open to freelance &amp; contract projects, remote roles, and collaborations on web apps, tooling, and product engineering.</p>
-        <div class="contact-links reveal reveal-delay-2">
-          <a href="mailto:adibmezouar4@gmail.com" class="btn btn-primary" id="contact-email-btn">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            adibmezouar4@gmail.com
+    <section class="contact" id="contact">
+      <div class="container contact-container reveal fade-up">
+        <h2>Let's Build Something Together</h2>
+        <p>Open to freelance, contract work, remote roles, and collaborations.</p>
+        <div class="contact-actions">
+          <a href="mailto:adibmezouar4@gmail.com" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9 2 2 2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Send an Email
           </a>
-          <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="contact-github-btn">
-            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
+          <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub Profile
           </a>
         </div>
       </div>
@@ -184,8 +255,12 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> Adib Mezouar</p>
+    <div class="container">
+      <p>&copy; <span id="current-year">2026</span> Adib Mezouar. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/adibmz" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="mailto:adibmezouar4@gmail.com">Email</a>
+      </div>
     </div>
   </footer>
 
