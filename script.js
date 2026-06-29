@@ -78,24 +78,6 @@ function initHeaderScroll() {
   });
 }
 
-// ===== Smooth number counter animation =====
-function animateCounter(el, target) {
-  const duration = 1200;
-  const start = performance.now();
-  const from = 0;
-
-  function step(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.round(from + (target - from) * eased);
-    el.textContent = current;
-    if (progress < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-
 // ===== Fetch GitHub profile =====
 async function fetchProfile() {
   try {
@@ -106,7 +88,6 @@ async function fetchProfile() {
     const nameEl = document.getElementById("name");
     const bioEl = document.getElementById("bio");
     const avatarEl = document.getElementById("avatar");
-    const reposEl = document.getElementById("repos-count");
 
     if (user.name && nameEl) {
       // Preserve the accent span on last name
@@ -125,9 +106,6 @@ async function fetchProfile() {
       }
     }
     if (user.avatar_url && avatarEl) avatarEl.src = user.avatar_url;
-
-    // Animate counters
-    if (reposEl) animateCounter(reposEl, user.public_repos ?? 0);
   } catch (err) {
     console.warn("Could not fetch GitHub profile:", err);
   }

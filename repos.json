@@ -29,19 +29,6 @@
     "updated_at": "2026-06-22T17:10:23Z"
   },
   {
-    "name": "capstone-2",
-    "html_url": "https://github.com/adibmz/capstone-2",
-    "description": "This is a personal portfolio website project built with HTML and CSS. It showcases my skills, experience, and contact information as a Full Stack Web Developer.",
-    "topics": [
-      "css",
-      "html",
-      "portfolio",
-      "static-site"
-    ],
-    "homepage": "https://adibmz.github.io/capstone-2/",
-    "updated_at": "2026-06-11T16:45:18Z"
-  },
-  {
     "name": "blogger-website",
     "html_url": "https://github.com/adibmz/blogger-website",
     "description": "This is a basic blog website built with Node.js, Express, and EJS templating. Users can create, update, and delete blog posts. All data is stored in memory (not in a database), so posts will reset when the server restarts.",
