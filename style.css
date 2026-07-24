@@ -798,6 +798,30 @@ h1, h2, h3, h4, h5 {
   color: #ef4444;
 }
 
+/* Validation Errors */
+.form-error {
+  font-size: 0.8rem;
+  color: #ef4444;
+  min-height: 0;
+  transition: var(--transition);
+}
+
+.form-error:not(:empty) {
+  min-height: 1.2em;
+  margin-top: 0.25rem;
+}
+
+.form-group.invalid input,
+.form-group.invalid textarea {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.04);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-group.invalid label {
+  color: #ef4444;
+}
+
 @media (min-width: 768px) {
   .contact-layout {
     grid-template-columns: 2fr 3fr;

@@ -126,16 +126,109 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // ===== Contact Form Submission =====
+  // ===== Contact Form: Sanitization & Validation =====
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
+    // Sanitize: strip HTML tags and trim
+    function sanitize(str) {
+      return str
+        .replace(/<[^>]*>/g, '')    // strip HTML tags
+        .replace(/&/g, '&amp;')     // escape ampersands
+        .replace(/</g, '&lt;')      // escape <
+        .replace(/>/g, '&gt;')      // escape >
+        .replace(/"/g, '&quot;')    // escape quotes
+        .trim();
+    }
+
+    // Show error on a field
+    function showError(fieldId, message) {
+      const group = document.getElementById(fieldId).closest('.form-group');
+      const errorEl = document.getElementById('error-' + fieldId.replace('contact-', ''));
+      group.classList.add('invalid');
+      if (errorEl) errorEl.textContent = message;
+    }
+
+    // Clear error on a field
+    function clearError(fieldId) {
+      const group = document.getElementById(fieldId).closest('.form-group');
+      const errorEl = document.getElementById('error-' + fieldId.replace('contact-', ''));
+      group.classList.remove('invalid');
+      if (errorEl) errorEl.textContent = '';
+    }
+
+    // Clear errors on input
+    ['contact-name', 'contact-email', 'contact-message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', () => clearError(id));
+      }
+    });
+
+    // Validate all fields, returns true if valid
+    function validateForm() {
+      let isValid = true;
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+
+      // Name: required, min 2 characters
+      if (!name) {
+        showError('contact-name', 'Name is required.');
+        isValid = false;
+      } else if (name.length < 2) {
+        showError('contact-name', 'Name must be at least 2 characters.');
+        isValid = false;
+      } else {
+        clearError('contact-name');
+      }
+
+      // Email: required, valid format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email) {
+        showError('contact-email', 'Email is required.');
+        isValid = false;
+      } else if (!emailRegex.test(email)) {
+        showError('contact-email', 'Please enter a valid email address.');
+        isValid = false;
+      } else {
+        clearError('contact-email');
+      }
+
+      // Message: required, min 10 characters
+      if (!message) {
+        showError('contact-message', 'Message is required.');
+        isValid = false;
+      } else if (message.length < 10) {
+        showError('contact-message', 'Message must be at least 10 characters.');
+        isValid = false;
+      } else {
+        clearError('contact-message');
+      }
+
+      return isValid;
+    }
+
+    // Handle submission
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      if (!validateForm()) return;
 
       const submitBtn = document.getElementById('contact-submit');
       const btnText = submitBtn.querySelector('.btn-text');
       const btnLoading = submitBtn.querySelector('.btn-loading');
       const statusEl = document.getElementById('form-status');
+
+      // Sanitize field values
+      const nameField = document.getElementById('contact-name');
+      const emailField = document.getElementById('contact-email');
+      const subjectField = document.getElementById('contact-subject');
+      const messageField = document.getElementById('contact-message');
+
+      nameField.value = sanitize(nameField.value);
+      emailField.value = sanitize(emailField.value);
+      subjectField.value = sanitize(subjectField.value);
+      messageField.value = sanitize(messageField.value);
 
       // Loading state
       submitBtn.disabled = true;
