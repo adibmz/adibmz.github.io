@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Clear errors on input
-    ['contact-name', 'contact-email', 'contact-message'].forEach(id => {
+    ['contact-name', 'contact-email', 'contact-subject', 'contact-message'].forEach(id => {
       const el = document.getElementById(id);
       if (el) {
         el.addEventListener('input', () => clearError(id));
@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let isValid = true;
       const name = document.getElementById('contact-name').value.trim();
       const email = document.getElementById('contact-email').value.trim();
+      const subject = document.getElementById('contact-subject').value.trim();
       const message = document.getElementById('contact-message').value.trim();
 
       // Name: required, min 2 characters
@@ -192,6 +193,14 @@ document.addEventListener('DOMContentLoaded', () => {
         isValid = false;
       } else {
         clearError('contact-email');
+      }
+
+      // Subject: required
+      if (!subject) {
+        showError('contact-subject', 'Subject is required.');
+        isValid = false;
+      } else {
+        clearError('contact-subject');
       }
 
       // Message: required, min 10 characters
