@@ -125,4 +125,48 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set current year dynamically in footer
   const yearEl = document.getElementById('current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ===== Contact Form Submission =====
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('contact-submit');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const btnLoading = submitBtn.querySelector('.btn-loading');
+      const statusEl = document.getElementById('form-status');
+
+      // Loading state
+      submitBtn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      statusEl.textContent = '';
+      statusEl.className = 'form-status';
+
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          statusEl.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+          statusEl.classList.add('success');
+          contactForm.reset();
+        } else {
+          throw new Error('Failed to send');
+        }
+      } catch (err) {
+        statusEl.textContent = 'Something went wrong. Please try emailing me directly.';
+        statusEl.classList.add('error');
+      } finally {
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      }
+    });
+  }
 });
